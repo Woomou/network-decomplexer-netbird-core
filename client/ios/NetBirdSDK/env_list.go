@@ -3,6 +3,7 @@
 package NetBirdSDK
 
 import (
+	"github.com/netbirdio/netbird/client/iface/netstack"
 	"github.com/netbirdio/netbird/client/internal/lazyconn"
 	"github.com/netbirdio/netbird/client/internal/peer"
 )
@@ -10,6 +11,13 @@ import (
 // EnvList is an exported struct to be bound by gomobile
 type EnvList struct {
 	data map[string]string
+}
+
+// GetEnvKeyNBUseNetstackMode exports the userspace WireGuard mode toggle. In
+// Network Decomplexer this keeps NetBird away from the system utun owned by
+// the single Mihomo packet-tunnel engine.
+func GetEnvKeyNBUseNetstackMode() string {
+	return netstack.EnvUseNetstackMode
 }
 
 // NewEnvList creates a new EnvList
